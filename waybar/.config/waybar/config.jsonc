@@ -9,9 +9,9 @@
     "hyprland/window"
   ],
 
-  "modules-center": [
-    "clock"
-  ],
+//  "modules-center": [
+    //"clock"
+//  ],
 
   "modules-right": [
     "custom/network-speed",
@@ -25,7 +25,7 @@
 
   "custom/arch-logo": {
         "format": " ",
-        "on-click": "pgrep wofi && pkill wofi || wofi -a",
+        // "on-click": "pgrep wofi && pkill wofi || wofi -a",
         "tooltip-format": "Menu"
   },
 

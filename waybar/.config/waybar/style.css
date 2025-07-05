@@ -1,8 +1,7 @@
 @import "mocha.css";
 
 * {
-    font-family: "Noto Sans", "Symbols Nerd Font", "Font Awesome 6 Free", sans-serif;
-    font-size: 15px;
+    font-family: "Noto Sans", "Symbols Nerd Font Mono", "Font Awesome 6 Free Regular", sans-serif;    font-size: 15px;
 }
 
 window#waybar {
