@@ -1,7 +1,8 @@
 @import "mocha.css";
 
 * {
-    font-family: "Noto Sans", "Symbols Nerd Font Mono", "Font Awesome 6 Free Regular", sans-serif;    font-size: 15px;
+    font-family: "Noto Sans", "Symbols Nerd Font Mono", "Font Awesome 6 Free Regular", sans-serif;
+    font-size: 15px;
 }
 
 window#waybar {
@@ -31,7 +32,7 @@ button {
 #mode,
 #wireplumber,
 #custom-network-speed,
-#custom-notification{
+#custom-notification {
     border-radius: 8px;
     margin: 4px 0;
     padding: 2px 8px;
@@ -128,7 +129,6 @@ button {
     border-top: 2px solid @mauve;
 }
 
-
 #custom-arch-logo {
     margin-left: 5px;
     font-size: 18px;
@@ -136,7 +136,6 @@ button {
     background-color: transparent;
     color: @text;
 }
-
 
 #window {
     margin: 0 12px;  /* Space around the window title */

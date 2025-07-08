@@ -43,7 +43,7 @@
       "5": "󰍩",       // Chat / Notes: Discord, Telegram, Notion, Tusk
       "6": "",       // Virtual Machine / Emulators  
       "urgent": "",
-      "focused": "",
+      "focused": ""
       // "default": ""
     }
   },
@@ -137,4 +137,5 @@
     "on-click-right": "swaync-client -d -sw",
     "escape": true
   }
+
 }
