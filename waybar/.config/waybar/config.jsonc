@@ -63,6 +63,7 @@
     // "format-alt": "{ifname}: {ipaddr}/{cidr}"
     "format-alt": "{icon} {essid}"
   },
+
   
   "pulseaudio": {
     "scroll-step": 3,
@@ -81,7 +82,8 @@
       "car": "",
       "default": ["", "", ""]
     },
-    "on-click": "pavucontrol"
+    "on-click": "pamixer -t"
+    // "on-double-click": "pavucontrol"
   },
 
   "clock": {
@@ -94,11 +96,12 @@
     "states": {
       "good": 95,
       "warning": 30,
-      "critical": 15
+      "critical": 20
     },
     "format": "{icon} {capacity}%",
     "format-full": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
+    //"format-charging": " {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt": "{icon} {time}",
     "format-icons": ["", "", "", "", ""]

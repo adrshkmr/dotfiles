@@ -1,0 +1,10 @@
+{
+  "keyMappings": "# Insert your preferred key mappings here.\nunmap x",
+  "settingsVersion": "2.3",
+  "exclusionRules": [
+    {
+      "passKeys": "F, f",
+      "pattern": "https?://www.youtube.com/*"
+    }
+  ]
+}
