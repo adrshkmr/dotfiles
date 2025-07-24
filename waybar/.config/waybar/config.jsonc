@@ -2,52 +2,46 @@
 {
   "layer": "top",
   "spacing": 3,
-
   "modules-left": [
     "custom/arch-logo",
     "hyprland/workspaces",
     "hyprland/window"
   ],
-
- "modules-center": [
+  "modules-center": [
     // "clock"
     "custom/notification"
- ],
-
+  ],
   "modules-right": [
+    "tray",
     "custom/network-speed",
     "network",
     "mpd",
     "pulseaudio",
     "backlight",
-    "battery",
-    "tray"
+    "battery"
   ],
-
   "custom/arch-logo": {
-        "format": " ",
-        // "on-click": "pgrep wofi && pkill wofi || wofi -a",
-        "tooltip-format": "Menu"
+    "format": " ",
+    // "on-click": "pgrep wofi && pkill wofi || wofi -a",
+    "tooltip-format": "Menu"
   },
-
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "warp-on-scroll": false,
     "format": "{icon}",
     "format-icons": {
-      "1": "",       // Terminal: Core system control (Alacritty / Zsh / Tmux)
-      "2": "",       // Browser: LibreWolf for docs, stackoverflow, portals
-      "3": "",       // Code Editor: Neovim, VSCode, JetBrains IDEs
-      "4": "",       // Media: Spotify / YouTube / VLC
-      "5": "󰍩",       // Chat / Notes: Discord, Telegram, Notion, Tusk
-      "6": "",       // Virtual Machine / Emulators  
+      "1": "", // Terminal: Core system control (Alacritty / Zsh / Tmux)
+      "2": "", // Browser: LibreWolf for docs, stackoverflow, portals
+      "3": "", // Code Editor: Neovim, VSCode, JetBrains IDEs
+      "4": "", // Media: Spotify / YouTube / VLC
+      "5": "󰍩", // Chat / Notes: Discord, Telegram, Notion, Tusk
+      "6": "", // Virtual Machine / Emulators  
       "urgent": "",
       "focused": ""
       // "default": ""
     }
   },
-
   "network": {
     "format-wifi": "{icon} {essid}",
     "format-icons": [
@@ -55,7 +49,7 @@
       "󰤟", // 25-50% — medium-low
       "󰤢", // 50-75% — medium
       "󰤥", // 75-100% — strong
-      "󰤨"  // full signal (optional)
+      "󰤨" // full signal (optional)
     ],
     "format-ethernet": "󰈁 Ethernet",
     "format-disconnected": "󰖪 Disconnected",
@@ -63,8 +57,6 @@
     // "format-alt": "{ifname}: {ipaddr}/{cidr}"
     "format-alt": "{icon} {essid}"
   },
-
-  
   "pulseaudio": {
     "scroll-step": 3,
     "format": "{icon} {volume}%",
@@ -80,18 +72,20 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
     "on-click": "pamixer -t"
-    // "on-double-click": "pavucontrol"
+    // "on-click-right": "bluetuith"
   },
-
   "clock": {
     "format": " {:%I:%M %p}",
     "tooltip-format": "<big>{:%I:%M %p}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}"
   },
-
   "battery": {
     "states": {
       "good": 95,
@@ -104,22 +98,41 @@
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": " {capacity}%",
     "format-alt": "{icon} {time}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": [
+      "󰂎",
+      "󰁺",
+      "󰁻",
+      "󰁼",
+      "󰁽",
+      "󰁾",
+      "󰁿",
+      "󰂀",
+      "󰂁",
+      "󰂂",
+      "󰁹"
+    ]
   },
-
   "backlight": {
     "format": "{icon} {percent}%",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "on-click": "brightnessctl set 10%-",
     "on-click-right": "brightnessctl set +10%"
   },
-
   "custom/network-speed": {
     "exec": "$HOME/.config/waybar/scripts/network_speed.py",
     "interval": 1,
     "tooltip": false
   },
-
   "custom/notification": {
     "tooltip": false,
     "format": "{icon}",
@@ -139,6 +152,13 @@
     "on-click": "swaync-client -t -sw",
     "on-click-right": "swaync-client -d -sw",
     "escape": true
+  },
+  "tray": {
+    "icon-size": 19,
+    "spacing": 8,
+    "icons": {
+      "blueman": "bluetooth",
+      "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
+    }
   }
-
 }

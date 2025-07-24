@@ -40,11 +40,12 @@ button {
     color: @text;
     transition: background-color 0.3s, box-shadow 0.2s;
     box-shadow: inset 0 0 0 1px @surface1;
-    border-top: 2px solid transparent; /* Added to prevent height jump */
+    border-top: 2px solid transparent;
+    /* Added to prevent height jump */
 }
 
 /* Workspaces */
-#workspaces{
+#workspaces {
     margin: 2px 2px;
 }
 
@@ -58,7 +59,8 @@ button {
     color: @text;
     transition: background-color 0.3s, box-shadow 0.2s;
     box-shadow: inset 0 0 0 1px @surface1;
-    border-top: 2px solid transparent; /* Consistent with hover */
+    border-top: 2px solid transparent;
+    /* Consistent with hover */
 }
 
 #workspaces button.active {
@@ -109,7 +111,7 @@ button {
 }
 
 /* Tray icons needing attention */
-#tray > .needs-attention {
+#tray>.needs-attention {
     background-color: @red;
 }
 
@@ -138,6 +140,7 @@ button {
 }
 
 #window {
-    margin: 0 12px;  /* Space around the window title */
+    margin: 0 12px;
+    /* Space around the window title */
     color: @text;
 }
