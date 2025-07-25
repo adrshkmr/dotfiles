@@ -1,6 +1,7 @@
 // -*- mode: jsonc -*-
 {
   "layer": "top",
+  "exclusive": true,
   "spacing": 3,
   "modules-left": [
     "custom/arch-logo",
@@ -159,7 +160,7 @@
   },
   "tray": {
     "icon-size": 19,
-    "spacing": 8,
+    "spacing": 10,
     "icons": {
       "blueman": "bluetooth",
       "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"

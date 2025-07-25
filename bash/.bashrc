@@ -17,6 +17,10 @@ alias hypr='code ~/.config'
 alias ll='ls -alF'
 
 
+# ---- Yazi Configuration ----
+export EDITOR="nvim"
+
+
 # ---- FZF -----
 
 # Set up fzf key bindings and fuzzy completion
