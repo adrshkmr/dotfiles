@@ -42,6 +42,10 @@
       // "default": ""
     }
   },
+  "hyprland/window": {
+    "format": "{class}",
+    "tooltip": false
+  },
   "network": {
     "format-wifi": "{icon} {essid}",
     "format-icons": [
