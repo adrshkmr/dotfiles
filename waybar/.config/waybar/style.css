@@ -1,7 +1,7 @@
 @import "mocha.css";
 
 * {
-    font-family: "Noto Sans", "Symbols Nerd Font Mono", "Font Awesome 6 Free Regular", sans-serif;
+    font-family: "Noto Sans", "Symbols Nerd Font Mono", "Font Awesome 6 Free Regular", sans-serif, monospace;
     font-size: 15px;
 }
 
