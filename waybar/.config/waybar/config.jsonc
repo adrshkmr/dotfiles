@@ -10,11 +10,13 @@
   ],
   "modules-center": [
     // "clock"
-    "custom/notification"
+    // "custom/spotify",
+    "custom/notification",
+    "custom/spotify"
   ],
   "modules-right": [
-    "tray",
     "custom/network-speed",
+    "tray",
     "network",
     "mpd",
     "pulseaudio",
@@ -37,7 +39,8 @@
       "3": "", // Code Editor: Neovim, VSCode, JetBrains IDEs
       "4": "", // Media: Spotify / YouTube / VLC
       "5": "󰍩", // Chat / Notes: Discord, Telegram, Notion, Tusk
-      "6": "", // Virtual Machine / Emulators  
+      "6": "", // Virtual Machine / Emulators
+      "10": "", // Email workspace
       "urgent": "",
       "focused": ""
       // "default": ""
@@ -98,11 +101,11 @@
       "critical": 20
     },
     "format": "{icon} {capacity}%",
-    "format-full": "{icon} {capacity}%",
+    //"format-full": "{icon} {capacity}%",
     //"format-charging": " {capacity}%",
     "format-charging": "󰂄 {capacity}%",
     "format-plugged": " {capacity}%",
-    "format-alt": "{icon} {time}",
+    //"format-alt": "{icon} {time}",
     "format-icons": [
       "󰂎",
       "󰁺",
@@ -165,5 +168,13 @@
       "blueman": "bluetooth",
       "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
     }
+  },
+  "custom/spotify": {
+    "exec": "/usr/bin/python3 /home/novice/.config/waybar/scripts/mediaplayer.py --player spotify",
+    "format": "{}",
+    "return-type": "json",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
   }
 }

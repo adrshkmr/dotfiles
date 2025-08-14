@@ -8,7 +8,7 @@
   "layer-shell": true,
   "layer-shell-cover-screen": true,
   "cssPriority": "highest",
-  "control-center-margin-top": 8,
+  "control-center-margin-top": 5,
   "control-center-margin-bottom": 10,
   "control-center-margin-right": 5,
   "control-center-margin-left": 0,
@@ -25,7 +25,6 @@
   "control-center-height": 600,
   "notification-window-width": 500,
   "keyboard-shortcuts": true,
-  // "notification-icon-size": 20,
   "notification-grouping": true,
   "image-visibility": "when-available",
   "transition-time": 200,
@@ -33,6 +32,7 @@
   "hide-on-action": true,
   "text-empty": "No Notifications",
   "script-fail-notify": true,
+
   "scripts": {
     "example-script": {
       "exec": "echo 'Do something...'",
@@ -44,6 +44,7 @@
       "run-on": "action"
     }
   },
+
   "notification-visibility": {
     "example-name": {
       "state": "muted",
@@ -51,42 +52,49 @@
       "app-name": "Spotify"
     }
   },
+
   "widgets": [
-    "mpris",
+    "volume",
+    "backlight",
     "inhibitors",
     "title",
     "dnd",
-    "notifications"
+    "mpris",
+    "notifications",
+    "buttons-grid"
   ],
+
   "widget-config": {
     "inhibitors": {
       "text": "Inhibitors",
       "button-text": "Clear All",
       "clear-all-button": true
     },
+
     "title": {
       "text": "Notifications",
       "clear-all-button": true,
       "button-text": "Clear All"
     },
+
     "dnd": {
       "text": "Do Not Disturb"
     },
-    "volume": {
-      "label": ""
-    },
+
     "label": {
       "max-lines": 5,
       "text": "Label Text"
     },
+
     "mpris": {
       "blacklist": [],
       "autohide": false,
       "show-album-art": "always",
       "loop-carousel": false,
-      // "image-size": 96,
-      "image-radius": 12
+      "album-art-size": 60,
+      "format": "{artist} — {title}"
     },
+
     "buttons-grid": {
       "buttons-per-row": 7,
       "actions": [
@@ -98,6 +106,24 @@
           "update-command": "sh -c '[[ $(nmcli radio wifi) == \"enabled\" ]] && echo true || echo false'"
         }
       ]
+    },
+
+    "volume": {
+      "label": "",
+      "show-percentage": true,
+      "update-command": "pamixer --get-volume",
+      "increase-command": "pamixer -i 5",
+      "decrease-command": "pamixer -d 5",
+      "mute-command": "pamixer -t"
+    },
+
+    "backlight": {
+      "label": "",
+      "device": "intel_backlight",
+      "min": 10,
+      "increase-command": "brightnessctl set +5%",
+      "decrease-command": "brightnessctl set 5%-"
     }
   }
 }
+

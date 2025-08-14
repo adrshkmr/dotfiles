@@ -47,7 +47,7 @@ $email = thunderbird
 # Or execute your favorite apps at launch like this:
 
 
-exec = swaync &
+exec-once = swaync &
 exec-once = protonvpn-app & 
 exec-once = blueman-applet &
 exec-once = eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg)
@@ -256,7 +256,7 @@ input {
     kb_layout = us
     kb_variant =
     kb_model =
-    kb_options = caps:escape
+    kb_options =
     kb_rules =
 
     follow_mouse = 1
@@ -302,9 +302,8 @@ bind = $mainMod, V, togglefloating,
 bind = $mainMod, SPACE, exec, $menu
 # bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, SEMICOLON, togglesplit, # dwindle
-bind = $mainMod SHIFT, N, exec, hyprshade toggle blue-light-filter
-bind = $mainMod, N, exec, swaync-client -t -sw
-bind = $mainMod SHIFT, P, exec, grim -g "$(slurp)" - | swappy -f -
+bind = $mainMod, N, exec, hyprshade toggle blue-light-filter
+bind = $mainMod, P, exec, grim -g "$(slurp)" - | swappy -f -
 bind = $mainMod, X, exec, killall waybar && waybar &
 bind = $mainMod SHIFT, R, exec, hyprctl reload
 bind = $mainMod SHIFT, period, exec, hyprlock
@@ -426,7 +425,6 @@ windowrulev2 = workspace 4, class:^Spotify$
 windowrulev2 = workspace 4, class:^mpv$
 windowrulev2 = workspace 6, class:^virt-manager$
 windowrulev2 = workspace 3, class:^Code$
-windowrulev2 = workspace 5, class:^discord$
 
 #########################
 ### XWAYLAND SETTINGS ###
@@ -447,23 +445,3 @@ env = QT_QPA_PLATFORMTHEME,qt5ct
 env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
 env = QT_AUTO_SCREEN_SCALE_FACTOR,1
 env = QT_STYLE_OVERRIDE,kvantum
-
-general {
-    layout = dwindle
-}
-
-debug {
-    disable_logs = false
-}
-
-
-
-# swaync
-layerrule = blur, swaync-control-center
-layerrule = blur, swaync-notification-window
-
-layerrule = ignorezero, swaync-control-center
-layerrule = ignorezero, swaync-notification-window
-
-layerrule = ignorealpha 0.1, swaync-control-center
-layerrule = ignorealpha 0.1, swaync-notification-window

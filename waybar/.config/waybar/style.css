@@ -32,7 +32,8 @@ button {
 #mode,
 #wireplumber,
 #custom-network-speed,
-#custom-notification {
+#custom-notification,
+#custom-spotify {
     border-radius: 8px;
     margin: 4px 0;
     padding: 2px 8px;
@@ -124,7 +125,7 @@ button {
 #pulseaudio:hover,
 #backlight:hover,
 #custom-network-speed:hover,
-#custom-notification:hover {
+#custom-notification:hover #custom-spotify:hover {
     background-color: rgba(0, 0, 0, 0.3);
     color: @mauve;
     border-top: 2px solid @mauve;
