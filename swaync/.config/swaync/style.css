@@ -322,7 +322,7 @@ scrollbar trough {
 
 .image {
   padding-right: 0.3rem;
-  min-width: 4rem;
+  min-width: 3rem;
   /* Adjust this value; 3rem ≈ 42px based on your 14px font-size */
-  min-height: 4rem;
+  min-height: 3rem;
 }
