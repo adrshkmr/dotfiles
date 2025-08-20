@@ -1,57 +1,60 @@
 return {
-	"nvimtools/none-ls.nvim",
-	config = function()
-		local null_ls = require("null-ls")
-		local b = null_ls.builtins
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
 
-		null_ls.setup({
-			sources = {
-				-- Lua
-				b.formatting.stylua,
-				--	b.diagnostics.luacheck,
+    config = function()
+        local null_ls = require("null-ls")
+        local b = null_ls.builtins
 
-				-- Python
-				b.formatting.black,
-				b.formatting.isort,
-				--				b.diagnostics.flake8,
+        null_ls.setup({
+            sources = {
+                -- Lua
+                b.formatting.stylua,
+                --	b.diagnostics.luacheck,
 
-				-- C / C++
-				b.formatting.clang_format,
-				b.diagnostics.cppcheck, -- optional
-				-- Rust
-				--                b.formatting.rustfmt,
-				--		b.diagnostics.clippy,
+                -- Python
+                b.formatting.black,
+                b.formatting.isort,
+                --				b.diagnostics.flake8,
 
-				-- Java
-				b.formatting.google_java_format,
+                -- C / C++
+                b.formatting.clang_format,
+                b.diagnostics.cppcheck, -- optional
+                -- Rust
+                --                b.formatting.rustfmt,
+                --		b.diagnostics.clippy,
 
-				-- JS / TS / React / CSS / Tailwind
-				b.formatting.prettierd,
-				--               b.diagnostics.eslint_d,
-				--              b.code_actions.eslint_d,
+                -- Java
+                b.formatting.google_java_format,
 
-				-- HTML / CSS / JSON / YAML / Markdown
-				b.formatting.prettierd,
-				b.diagnostics.stylelint,
-			},
-		})
+                -- JS / TS / React / CSS / Tailwind
+                b.formatting.prettierd.with({
+                    extra_args = { "--trailing-comma", "none" },
+                }),
+                --               b.diagnostics.eslint_d,
+                --              b.code_actions.eslint_d,
 
-		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+                -- HTML / CSS / JSON / YAML / Markdown
+                b.diagnostics.stylelint,
+            },
+        })
 
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			callback = function()
-				vim.lsp.buf.format({ async = false })
-			end,
-		})
+        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {})
 
-		vim.diagnostic.config({
-			--		virtual_text = {
-			--			spacing = 2,
-			--		},
-			virtual_text = true,
-			signs = true,
-			underline = true,
-			update_in_insert = false,
-		})
-	end,
+        -- format on save
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            callback = function()
+                vim.lsp.buf.format({ async = false })
+            end,
+        })
+
+        vim.diagnostic.config({
+            virtual_text = true,
+            signs = true,
+            underline = true,
+            update_in_insert = false,
+        })
+    end,
 }

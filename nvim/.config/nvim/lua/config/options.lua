@@ -21,3 +21,12 @@ g.background = "dark"
 -- Clipboard / Swapfile
 opt.clipboard = "unnamedplus"
 opt.swapfile = true
+
+opt.splitbelow = true
+opt.splitright = true
+opt.scrolloff = 999
+opt.termguicolors = false
+opt.wrap = false
+opt.ignorecase = true
+opt.inccommand = "split"
+
