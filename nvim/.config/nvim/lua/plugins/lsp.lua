@@ -36,15 +36,10 @@ return {
 			lspconfig.tailwindcss.setup({ capabilities = capabilities })
 			lspconfig.jsonls.setup({ capabilities = capabilities })
 
-			-- vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
-			vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
+			-- vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
+			-- vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
+			vim.keymap.set("n", "gca", vim.lsp.buf.code_action, {})
 		end,
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		version = "v2.*",
-		build = "make install_jsregexp",
 	},
 }

@@ -4,12 +4,23 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
 
 -- Neo-tree
-vim.keymap.set("n", "<leader>b", ":Neotree filesystem reveal right<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>b", ":Neotree filesystem reveal right<CR>", { noremap = true, silent = true })
 
--- Navigate vim panes better
-vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
-vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
-vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
+-- Navigate vim panels better
+vim.keymap.set("n", "<C-h>", "<Cmd>wincmd h<CR>", {})
+vim.keymap.set("n", "<C-j>", "<Cmd>wincmd j<CR>", {})
+vim.keymap.set("n", "<C-k>", "<Cmd>wincmd k<CR>", {})
+vim.keymap.set("n", "<C-l>", "<Cmd>wincmd l<CR>", {})
 
-vim.keymap.set("n", "<leader>h", ":nohlsearch<CR>")
+-- Navigate better in Terminal mode
+function _G.set_terminal_keymaps()
+	local opts = { noremap = true }
+	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+end
+
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")

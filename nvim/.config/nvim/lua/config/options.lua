@@ -29,4 +29,3 @@ opt.termguicolors = false
 opt.wrap = false
 opt.ignorecase = true
 opt.inccommand = "split"
-
