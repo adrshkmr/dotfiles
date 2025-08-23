@@ -29,5 +29,8 @@ opt.termguicolors = true
 opt.wrap = false
 opt.ignorecase = true
 opt.inccommand = "split"
-opt.hlsearch = false
+opt.hlsearch = true
 -- vim.o.pumblend = 20
+
+opt.titlestring = "this"
+opt.title = true

@@ -30,14 +30,20 @@ return {
 				},
 			},
 		},
-		quickfile = { enabled = true },
-		scope = { enabled = true },
-		scroll = { enabled = true },
-		statuscolumn = { enabled = true },
-		words = { enabled = true },
+		quickfile = { enabled = false },
+		scope = { enabled = false },
+		scroll = { enabled = false },
+		statuscolumn = { enabled = false },
+		words = { enabled = false },
 		styles = {
 			notification = {
 				wo = { wrap = true }, -- Wrap notifications
+			},
+		},
+		win = {
+			enabled = true,
+			wo = {
+				winblend = 10,
 			},
 		},
 	},
@@ -78,20 +84,37 @@ return {
 			end,
 			desc = "Notification History",
 		},
+
+		-- Explorer keymaps (matching LazyVim)
 		{
 			"<leader>e",
 			function()
+				Snacks.explorer({ cwd = Snacks.git.get_root() })
+			end,
+			desc = "Explorer Snacks (root dir)",
+		},
+		{
+			"<leader>E",
+			function()
 				Snacks.explorer()
 			end,
-			desc = "File Explorer",
+			desc = "Explorer Snacks (cwd)",
 		},
-		-- find
+
+		-- File operations
 		{
 			"<leader>fb",
 			function()
 				Snacks.picker.buffers()
 			end,
 			desc = "Buffers",
+		},
+		{
+			"<leader>fB",
+			function()
+				Snacks.picker.buffers({ all = true })
+			end,
+			desc = "Buffers (all)",
 		},
 		{
 			"<leader>fc",
@@ -105,14 +128,21 @@ return {
 			function()
 				Snacks.picker.files()
 			end,
-			desc = "Find Files",
+			desc = "Find Files (Root Dir)",
+		},
+		{
+			"<leader>fF",
+			function()
+				Snacks.picker.files({ cwd = vim.uv.cwd(0, 0) })
+			end,
+			desc = "Find Files (cwd)",
 		},
 		{
 			"<leader>fg",
 			function()
 				Snacks.picker.git_files()
 			end,
-			desc = "Find Git Files",
+			desc = "Find Files (git-files)",
 		},
 		{
 			"<leader>fp",
@@ -127,6 +157,13 @@ return {
 				Snacks.picker.recent()
 			end,
 			desc = "Recent",
+		},
+		{
+			"<leader>fR",
+			function()
+				Snacks.picker.recent({ cwd = vim.uv.cwd() })
+			end,
+			desc = "Recent (cwd)",
 		},
 		-- git
 		{
