@@ -437,13 +437,6 @@ return {
 			desc = "Select Scratch Buffer",
 		},
 		{
-			"<leader>n",
-			function()
-				Snacks.notifier.show_history()
-			end,
-			desc = "Notification History",
-		},
-		{
 			"<leader>bd",
 			function()
 				Snacks.bufdelete()
@@ -479,21 +472,21 @@ return {
 			end,
 			desc = "Dismiss All Notifications",
 		},
-		{
-			"<c-/>",
-			function()
-				Snacks.terminal()
-			end,
-			desc = "Toggle Terminal",
-			mode = { "n", "t" },
-		},
-		{
-			"<c-_>",
-			function()
-				Snacks.terminal()
-			end,
-			desc = "which_key_ignore",
-		},
+		--[[ {
+            "<c-/>",
+            function()
+                Snacks.terminal()
+            end,
+            desc = "Toggle Terminal",
+            mode = { "n", "t" },
+        },
+        {
+            "<c-_>",
+            function()
+                Snacks.terminal()
+            end,
+            desc = "which_key_ignore",
+        }, ]]
 		{
 			"]]",
 			function()

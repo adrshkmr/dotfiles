@@ -13,7 +13,7 @@
         "custom/notification"
     ],
     "modules-right": [
-        "custom/network-speed",
+        // "custom/network-speed",
         "tray",
         "network",
         "mpd",
