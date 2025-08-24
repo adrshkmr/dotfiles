@@ -5,12 +5,15 @@ return {
 	---@type snacks.Config
 	opts = {
 		bigfile = { enabled = true },
-		dashboard = { enabled = true },
+		dashboard = {
+			enabled = true,
+			autostart = true,
+		},
 		explorer = {
-			enabled = true, -- Enable the explorer module
-			replace_netrw = true, -- Replace Neovim's default netrw with snacks.nvim explorer
-			auto_close = false, -- Automatically close explorer after opening a file
-			hidden = true, -- Show hidden files (e.g., dotfiles)
+			enabled = true,
+			replace_netrw = true,
+			auto_close = false,
+			hidden = true,
 		},
 		indent = { enabled = true },
 		input = { enabled = true },
@@ -21,7 +24,14 @@ return {
 		picker = {
 			enabled = true,
 			sources = {
+				files = {
+					hidden = true,
+				},
+				grep = {
+					hidden = true,
+				},
 				explorer = {
+					hidden = true,
 					layout = {
 						layout = {
 							position = "right",
@@ -30,32 +40,71 @@ return {
 				},
 			},
 		},
-		quickfile = { enabled = false },
-		scope = { enabled = false },
-		scroll = { enabled = false },
-		statuscolumn = { enabled = false },
-		words = { enabled = false },
+		quickfile = { enabled = true },
+		scope = { enabled = true },
+		scroll = { enabled = true },
+		statuscolumn = { enabled = true },
+		words = { enabled = true },
 		styles = {
 			notification = {
-				wo = { wrap = true }, -- Wrap notifications
+				wo = { wrap = true, winblend = 0 },
+				bo = {},
+			},
+			explorer = {
+				wo = { winblend = 0 },
+				bo = { buftype = "nofile" },
+				backdrop = false,
+			},
+			picker = {
+				wo = { winblend = 0 },
+				backdrop = false,
+			},
+			picker_input = {
+				wo = { winblend = 0 },
+				backdrop = false,
+			},
+			picker_list = {
+				wo = { winblend = 0 },
+				backdrop = false,
+			},
+			picker_preview = {
+				wo = { winblend = 0 },
+				backdrop = false,
+			},
+			-- Add more styles for complete transparency
+			input = {
+				wo = { winblend = 0 },
+				backdrop = false,
+			},
+			scratch = {
+				wo = { winblend = 0 },
+				backdrop = false,
+			},
+			zen = {
+				wo = { winblend = 0 },
+				backdrop = false,
+			},
+			terminal = {
+				wo = { winblend = 0 },
+				backdrop = false,
 			},
 		},
 		win = {
 			enabled = true,
 			wo = {
-				winblend = 10,
+				winblend = 0,
 			},
 		},
 	},
 	keys = {
 		-- Top Pickers & Explorer
-		{
-			"<leader><space>",
-			function()
-				Snacks.picker.smart()
-			end,
-			desc = "Smart Find Files",
-		},
+		-- {
+		--     "<leader><space>",
+		--     function()
+		--         Snacks.picker.smart()
+		--     end,
+		--     desc = "Smart Find Files",
+		-- },
 		{
 			"<leader>,",
 			function()
@@ -63,13 +112,13 @@ return {
 			end,
 			desc = "Buffers",
 		},
-		{
-			"<leader>/",
-			function()
-				Snacks.picker.grep()
-			end,
-			desc = "Grep",
-		},
+		-- {
+		-- 	"<leader>/",
+		-- 	function()
+		-- 		Snacks.picker.grep()
+		-- 	end,
+		-- 	desc = "Grep",
+		-- },
 		{
 			"<leader>:",
 			function()
@@ -89,16 +138,9 @@ return {
 		{
 			"<leader>e",
 			function()
-				Snacks.explorer({ cwd = Snacks.git.get_root() })
-			end,
-			desc = "Explorer Snacks (root dir)",
-		},
-		{
-			"<leader>E",
-			function()
 				Snacks.explorer()
 			end,
-			desc = "Explorer Snacks (cwd)",
+			desc = "Explorer Snacks (root dir)",
 		},
 
 		-- File operations
@@ -133,7 +175,7 @@ return {
 		{
 			"<leader>fF",
 			function()
-				Snacks.picker.files({ cwd = vim.uv.cwd(0, 0) })
+				Snacks.picker.files({ cwd = vim.uv.cwd() })
 			end,
 			desc = "Find Files (cwd)",
 		},
@@ -554,6 +596,7 @@ return {
 						signcolumn = "yes",
 						statuscolumn = " ",
 						conceallevel = 3,
+						winblend = 0, -- Make this window transparent too
 					},
 				})
 			end,
@@ -588,6 +631,55 @@ return {
 				Snacks.toggle.inlay_hints():map("<leader>uh")
 				Snacks.toggle.indent():map("<leader>ug")
 				Snacks.toggle.dim():map("<leader>uD")
+			end,
+		})
+
+		-- Auto-open explorer when starting nvim without arguments
+		vim.api.nvim_create_autocmd("VimEnter", {
+			callback = function()
+				-- Check if no files were opened and no stdin input
+				if vim.fn.argc() == 0 and not vim.o.insertmode and vim.fn.line2byte("$") == -1 then
+					Snacks.explorer({})
+				end
+			end,
+		})
+
+		-- Force transparent background for better terminal integration
+		vim.api.nvim_create_autocmd("ColorScheme", {
+			callback = function()
+				-- Make background transparent for better terminal integration
+				vim.cmd([[
+                    highlight Normal guibg=NONE ctermbg=NONE
+                    highlight NormalFloat guibg=NONE ctermbg=NONE
+                    highlight NormalNC guibg=NONE ctermbg=NONE
+                    highlight EndOfBuffer guibg=NONE ctermbg=NONE
+                    highlight SignColumn guibg=NONE ctermbg=NONE
+                    highlight VertSplit guibg=NONE ctermbg=NONE
+                    highlight StatusLine guibg=NONE ctermbg=NONE
+                    highlight StatusLineNC guibg=NONE ctermbg=NONE
+                    highlight FloatBorder guibg=NONE ctermbg=NONE
+                    highlight Pmenu guibg=NONE ctermbg=NONE
+                    highlight PmenuSel guibg=NONE ctermbg=NONE
+                    highlight WinSeparator guibg=NONE ctermbg=NONE
+                    highlight TelescopeNormal guibg=NONE ctermbg=NONE
+                    highlight TelescopeBorder guibg=NONE ctermbg=NONE
+                    highlight TelescopePromptNormal guibg=NONE ctermbg=NONE
+                    highlight TelescopeResultsNormal guibg=NONE ctermbg=NONE
+                    highlight TelescopePreviewNormal guibg=NONE ctermbg=NONE
+                ]])
+			end,
+		})
+
+		-- Apply transparency immediately on startup
+		vim.api.nvim_create_autocmd("VimEnter", {
+			callback = function()
+				vim.cmd([[
+                    highlight Normal guibg=NONE ctermbg=NONE
+                    highlight NormalFloat guibg=NONE ctermbg=NONE
+                    highlight FloatBorder guibg=NONE ctermbg=NONE
+                    highlight Pmenu guibg=NONE ctermbg=NONE
+                    highlight WinSeparator guibg=NONE ctermbg=NONE
+                ]])
 			end,
 		})
 	end,

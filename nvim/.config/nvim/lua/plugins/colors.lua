@@ -2,24 +2,23 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        priority = 1000, -- load before all other plugins
+        priority = 1000,
         config = function()
             require("catppuccin").setup({
-                flavour = "mocha", -- latte, frappe, macchiato, mocha
-                transparent_background = true, -- if you want transparency
+                flavour = "mocha",
+                transparent_background = true,
                 integrations = {
-                    treesitter = true,
-                    lsp_trouble = true,
-                    cmp = true,
-                    gitsigns = true,
-                    telescope = true,
-                    nvimtree = true,
-                    notify = true,
-                    mini = true,
-                    bufferline = true,
+                    treesitter = false,
+                    lsp_trouble = false,
+                    cmp = false,
+                    gitsigns = false,
+                    nvimtree = false,
+                    notify = false,
+                    mini = false,
+                    bufferline = false,
                 },
+                vim.cmd.colorscheme("catppuccin"),
             })
-            vim.cmd.colorscheme("catppuccin")
         end,
     },
 }
