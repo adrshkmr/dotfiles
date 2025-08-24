@@ -1,16 +1,5 @@
 vim.g.mapleader = " "
 
-vim.opt.timeoutlen = 300
-vim.opt.ttimeoutlen = 50
-
--- Quick actions
--- vim.keymap.set("n", "<C-s>", ":w<CR>", {})     -- Save
--- vim.keymap.set({ "n" }, "<C-x>", ":x<CR>", {}) -- Save and quit
-
--- All mode jk escape
--- vim.keymap.set({ "i", "v", "c" }, "jk", "<Esc>", { desc = "Exit to normal mode" })
--- vim.keymap.set("t", "jk", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
 -- Netrw
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
 
@@ -25,8 +14,6 @@ function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
 	local map = vim.api.nvim_buf_set_keymap
 	map(0, "t", "<esc>", [[<C-\><C-n>]], opts)
-	-- map(0, "t", "jk", [[<C-\><C-n>]], opts)
-	-- map(0, "t", "<C-[", [[<C-\><C-n>]], opts)
 	map(0, "t", "<leader>h", [[<C-\><C-n><C-W>h]], opts)
 	map(0, "t", "<leader>j", [[<C-\><C-n><C-W>j]], opts)
 	map(0, "t", "<leader>k", [[<C-\><C-n><C-W>k]], opts)

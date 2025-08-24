@@ -1,10 +1,6 @@
 local g = vim.g
 local opt = vim.opt
 
--- Python & Rust
-g.python_recommended_style = 0
-g.rust_recommended_style = 0
-
 -- Tabs / Indentation
 opt.tabstop = 4
 opt.shiftwidth = 4
@@ -26,7 +22,7 @@ opt.splitbelow = true
 opt.splitright = true
 opt.scrolloff = 999
 opt.termguicolors = true
-opt.wrap = false
+opt.wrap = true
 opt.ignorecase = true
 opt.inccommand = "split"
 opt.hlsearch = true
