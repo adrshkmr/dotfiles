@@ -15,22 +15,22 @@ vim.opt.ttimeoutlen = 50
 vim.keymap.set("n", "<leader>cd", vim.cmd.Ex)
 
 -- Navigate vim panels better
-vim.keymap.set("n", "<C-h>", "<Cmd>wincmd h<CR>", {})
-vim.keymap.set("n", "<C-j>", "<Cmd>wincmd j<CR>", {})
-vim.keymap.set("n", "<C-k>", "<Cmd>wincmd k<CR>", {})
-vim.keymap.set("n", "<C-l>", "<Cmd>wincmd l<CR>", {})
+vim.keymap.set("n", "<leader>h", "<Cmd>wincmd h<CR>", {})
+vim.keymap.set("n", "<leader>j", "<Cmd>wincmd j<CR>", {})
+vim.keymap.set("n", "<leader>k", "<Cmd>wincmd k<CR>", {})
+vim.keymap.set("n", "<leader>l", "<Cmd>wincmd l<CR>", {})
 
 -- Nevigate better in terminal mode
 function _G.set_terminal_keymaps()
 	local opts = { noremap = true }
 	local map = vim.api.nvim_buf_set_keymap
 	map(0, "t", "<esc>", [[<C-\><C-n>]], opts)
-	map(0, "t", "jk", [[<C-\><C-n>]], opts)
-	map(0, "t", "<C-[", [[<C-\><C-n>]], opts)
-	map(0, "t", "<C-h>", [[<C-\><C-n><C-W>h]], opts)
-	map(0, "t", "<C-j>", [[<C-\><C-n><C-W>j]], opts)
-	map(0, "t", "<C-k>", [[<C-\><C-n><C-W>k]], opts)
-	map(0, "t", "<C-l>", [[<C-\><C-n><C-W>l]], opts)
+	-- map(0, "t", "jk", [[<C-\><C-n>]], opts)
+	-- map(0, "t", "<C-[", [[<C-\><C-n>]], opts)
+	map(0, "t", "<leader>h", [[<C-\><C-n><C-W>h]], opts)
+	map(0, "t", "<leader>j", [[<C-\><C-n><C-W>j]], opts)
+	map(0, "t", "<leader>k", [[<C-\><C-n><C-W>k]], opts)
+	map(0, "t", "<leader>l", [[<C-\><C-n><C-W>l]], opts)
 end
 
 vim.api.nvim_create_autocmd("TermOpen", {
@@ -43,7 +43,3 @@ vim.api.nvim_create_autocmd("TermOpen", {
 -- clipboard
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Yank to clipboard" })
 vim.keymap.set("n", "<leader>Y", [["+Y]])
-
--- visual mode j&k moves
-vim.keymap.set("v", "<leader>j", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<leader>k", ":m '<-2<CR>gv=gv")
