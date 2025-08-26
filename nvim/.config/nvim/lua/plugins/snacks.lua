@@ -487,18 +487,7 @@ return {
 			end,
 			desc = "LSP Workspace Symbols",
 		},
-		-- Buffers
-		-- Add these for instant buffer switching (no picker):
-		{
-			"<S-h>",
-			"<cmd>bprevious<cr>",
-			desc = "Prev Buffer",
-		},
-		{
-			"<S-l>",
-			"<cmd>bnext<cr>",
-			desc = "Next Buffer",
-		}, -- Other
+		-- Other
 		{
 			"<leader>z",
 			function()

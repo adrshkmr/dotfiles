@@ -109,3 +109,4 @@ alias ls="eza --icons=always"
 
 # swaync reload 
 alias sr="swaync-client -R -rs"
+
