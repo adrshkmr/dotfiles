@@ -16,7 +16,7 @@ g.background = "dark"
 
 -- Clipboard / Swapfile
 -- opt.clipboard = "unnamedplus"
-opt.swapfile = true
+opt.swapfile = false
 
 opt.splitbelow = true
 opt.splitright = true

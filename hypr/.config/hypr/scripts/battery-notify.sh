@@ -1,10 +1,7 @@
 #!/bin/bash
 
 BATTERY_PATH="/sys/class/power_supply/BAT0"
-LOW_BATTERY=20
-CRITICAL_BATTERY=5
-
-# State file to prevent spam notifications
+BATTERY_ICON="$HOME/.config/hypr/icons/battery.png"
 STATE_FILE="/tmp/battery_notify_state"
 
 # Function to check if we should notify
@@ -12,7 +9,6 @@ should_notify() {
     local level=$1
     local current_state="${CAPACITY}_${STATUS}_${level}"
     
-    # Read previous state
     if [[ -f "$STATE_FILE" ]]; then
         local prev_state=$(cat "$STATE_FILE")
         [[ "$prev_state" != "$current_state" ]] && return 0
@@ -29,7 +25,6 @@ update_state() {
 }
 
 while true; do
-    # Exit if battery doesn't exist
     [[ ! -f "$BATTERY_PATH/capacity" ]] && exit 1
     
     CAPACITY=$(cat "$BATTERY_PATH/capacity")
@@ -42,17 +37,25 @@ while true; do
     
     # Only check when not charging
     if [[ "$STATUS" != "Charging" ]]; then
-        if [[ $CAPACITY -le $CRITICAL_BATTERY ]] && should_notify "critical"; then
-            notify-send -u critical -t 0 -a "󰂃 Critical Battery!"
-                
+        # Critical at exactly 5%
+        if [[ $CAPACITY -eq 5 ]] && should_notify "critical"; then
+            if [[ -f "$BATTERY_ICON" ]]; then
+                notify-send -u critical -t 0 -i "$BATTERY_ICON" "Battery Critical (5%)"
+            else
+                notify-send -u critical -t 0 "🔋 Battery Critical (5%)"
+            fi
             update_state "critical"
             
-        elif [[ $CAPACITY -le $LOW_BATTERY && $CAPACITY -gt $CRITICAL_BATTERY ]] && should_notify "low"; then
-            notify-send -u normal -t 8000 -a "󰂃 Low Battery"
+        # Low battery at exactly 20%
+        elif [[ $CAPACITY -eq 20 ]] && should_notify "low"; then
+            if [[ -f "$BATTERY_ICON" ]]; then
+                notify-send -u normal -t 5000 -i "$BATTERY_ICON" "Low Battery (20%)"
+            else
+                notify-send -u normal -t 5000 "🔋 Low Battery (20%)"
+            fi
             update_state "low"
         fi
     fi
     
-    # Check every 60 seconds (efficient for battery monitoring)
     sleep 60
 done

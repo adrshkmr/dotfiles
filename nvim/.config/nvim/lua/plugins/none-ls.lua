@@ -41,13 +41,13 @@ return {
             },
         })
 
-        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, {})
--- format on save
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            callback = function()
-                vim.lsp.buf.format({ async = false })
-            end,
-        })
+        vim.keymap.set("n", "<leader>bf", vim.lsp.buf.format, {})
+        -- format on save
+        -- vim.api.nvim_create_autocmd("BufWritePre", {
+        --     callback = function()
+        --         vim.lsp.buf.format({ async = false })
+        --     end,
+        -- })
 
         vim.diagnostic.config({
             virtual_text = true,

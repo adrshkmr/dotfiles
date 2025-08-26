@@ -7,13 +7,13 @@ return {
 		bigfile = { enabled = true },
 		dashboard = {
 			enabled = true,
-			autostart = true,
+			autostart = false,
 		},
 		explorer = {
 			enabled = true,
 			replace_netrw = true,
-			auto_close = false,
 			hidden = true,
+			auto_close = true,
 		},
 		indent = { enabled = true },
 		input = { enabled = true },
@@ -32,6 +32,7 @@ return {
 				},
 				explorer = {
 					hidden = true,
+					-- auto_close = false,
 					layout = {
 						layout = {
 							position = "right",
@@ -450,14 +451,14 @@ return {
 			end,
 			desc = "Goto Declaration",
 		},
-		{
-			"gr",
-			function()
-				Snacks.picker.lsp_references()
-			end,
-			nowait = true,
-			desc = "References",
-		},
+		-- {
+		-- 	"gr",
+		-- 	function()
+		-- 		Snacks.picker.lsp_references()
+		-- 	end,
+		-- 	nowait = true,
+		-- 	desc = "References",
+		-- },
 		{
 			"gI",
 			function()
@@ -486,7 +487,18 @@ return {
 			end,
 			desc = "LSP Workspace Symbols",
 		},
-		-- Other
+		-- Buffers
+		-- Add these for instant buffer switching (no picker):
+		{
+			"<S-h>",
+			"<cmd>bprevious<cr>",
+			desc = "Prev Buffer",
+		},
+		{
+			"<S-l>",
+			"<cmd>bnext<cr>",
+			desc = "Next Buffer",
+		}, -- Other
 		{
 			"<leader>z",
 			function()
@@ -551,27 +563,27 @@ return {
 			end,
 			desc = "Dismiss All Notifications",
 		},
-		--[[ {
-            "<c-/>",
-            function()
-                Snacks.terminal()
-            end,
-            desc = "Toggle Terminal",
-            mode = { "n", "t" },
-        },
-        {
-            "<c-_>",
-            function()
-                Snacks.terminal()
-            end,
-            desc = "which_key_ignore",
-        }, ]]
+		{
+			"<c-/>",
+			function()
+				Snacks.terminal()
+			end,
+			desc = "Toggle Terminal",
+			mode = { "n", "t" },
+		},
+		{
+			"<c-_>",
+			function()
+				Snacks.terminal()
+			end,
+			desc = "which_key_ignore",
+		},
 		{
 			"]]",
 			function()
 				Snacks.words.jump(vim.v.count1)
 			end,
-			desc = "Next Reference",
+			desc = "Next --[[ Refe ]]rence",
 			mode = { "n", "t" },
 		},
 		{
@@ -634,53 +646,14 @@ return {
 			end,
 		})
 
-		-- Auto-open explorer when starting nvim without arguments
-		vim.api.nvim_create_autocmd("VimEnter", {
-			callback = function()
-				-- Check if no files were opened and no stdin input
-				if vim.fn.argc() == 0 and not vim.o.insertmode and vim.fn.line2byte("$") == -1 then
-					Snacks.explorer({})
-				end
-			end,
-		})
-
-		-- Force transparent background for better terminal integration
-		vim.api.nvim_create_autocmd("ColorScheme", {
-			callback = function()
-				-- Make background transparent for better terminal integration
-				vim.cmd([[
-                    highlight Normal guibg=NONE ctermbg=NONE
-                    highlight NormalFloat guibg=NONE ctermbg=NONE
-                    highlight NormalNC guibg=NONE ctermbg=NONE
-                    highlight EndOfBuffer guibg=NONE ctermbg=NONE
-                    highlight SignColumn guibg=NONE ctermbg=NONE
-                    highlight VertSplit guibg=NONE ctermbg=NONE
-                    highlight StatusLine guibg=NONE ctermbg=NONE
-                    highlight StatusLineNC guibg=NONE ctermbg=NONE
-                    highlight FloatBorder guibg=NONE ctermbg=NONE
-                    highlight Pmenu guibg=NONE ctermbg=NONE
-                    highlight PmenuSel guibg=NONE ctermbg=NONE
-                    highlight WinSeparator guibg=NONE ctermbg=NONE
-                    highlight TelescopeNormal guibg=NONE ctermbg=NONE
-                    highlight TelescopeBorder guibg=NONE ctermbg=NONE
-                    highlight TelescopePromptNormal guibg=NONE ctermbg=NONE
-                    highlight TelescopeResultsNormal guibg=NONE ctermbg=NONE
-                    highlight TelescopePreviewNormal guibg=NONE ctermbg=NONE
-                ]])
-			end,
-		})
-
-		-- Apply transparency immediately on startup
-		vim.api.nvim_create_autocmd("VimEnter", {
-			callback = function()
-				vim.cmd([[
-                    highlight Normal guibg=NONE ctermbg=NONE
-                    highlight NormalFloat guibg=NONE ctermbg=NONE
-                    highlight FloatBorder guibg=NONE ctermbg=NONE
-                    highlight Pmenu guibg=NONE ctermbg=NONE
-                    highlight WinSeparator guibg=NONE ctermbg=NONE
-                ]])
-			end,
-		})
+		-- -- Auto-open explorer when starting nvim without arguments
+		-- vim.api.nvim_create_autocmd("VimEnter", {
+		--     callback = function()
+		--         -- Check if no files were opened and no stdin input
+		--         if vim.fn.argc() == 0 and not vim.o.insertmode and vim.fn.line2byte("$") == -1 then
+		--             Snacks.explorer({})
+		--         end
+		--     end,
+		-- })
 	end,
 }

@@ -18,7 +18,6 @@ PS1='[\u@\h \W]\$ '
 
 # ---- General Aliases ----
 
-alias hypr='code ~/.config'
 alias ll='ls -alF'
 
 
