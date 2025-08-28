@@ -1,7 +1,9 @@
 return {
 	"folke/persistence.nvim",
 	event = "BufReadPre",
-	opts = {},
+	opts = {
+		autoload = true,
+	},
 	keys = {
 		{
 			"<leader>qs",
